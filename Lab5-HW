@@ -1,0 +1,418 @@
+#include <stdio.h>
+#include <math.h>
+
+void P1()
+{
+    int n;
+    int number;
+    int counter = 0;
+
+    printf("Insert how many numbers you want to work with");
+    scanf("%i", &n);
+    
+    for (int i = 0; i < n; i++)
+    {
+        printf("Insert those %i numbers", n);
+        scanf("%i", &number);
+
+        if (number % 5 == 3)
+        {
+            counter++;
+        }
+    }
+    
+    printf("%i", counter);
+}
+
+void P2()
+{
+    int a;
+    int b;
+    int n;
+
+    printf("Insert a and b\n");
+    scanf("%i%i", &a, &b);
+
+    n = fabs(b - a) + 1;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (b > a)
+        {
+            printf("%i ", a + i);
+        }
+        else
+        {
+            printf("%i ", b + i);
+        }
+    }
+}
+
+void P3()
+{
+    int f1 = 1;
+    int f2 = 1;
+    int fn;
+    int n;
+
+    printf("Insert a number");
+    scanf("%i", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        fn = f1 + f2;
+        f1 = f2;
+        f2 = fn;
+
+        printf("%i ", fn);
+    }
+}
+
+void P4()
+{
+    int n;
+
+    printf("Insert how many numbers you want to work with");
+    scanf("%i", &n);
+
+    if (n % 2 != 0)
+    {
+        n++;
+
+        float num[n];
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            printf("Insert those %i numbers", n);
+            scanf("%f", &num[i]);
+        }
+
+        for (int i = 0; i < n; i += 2)
+        {
+            printf("%g ", (num[i] + num[i + 1]) / 2.0);
+        }
+    }
+    else
+    {
+        float num[n];
+
+        for (int i = 0; i < n; i++)
+        {
+            printf("Insert those %i numbers", n);
+            scanf("%f", &num[i]);
+        }
+
+        for (int i = 0; i < n; i += 2)
+        {
+            printf("%g ", (num[i] + num[i + 1]) / 2);
+        }
+    }     
+}
+
+void P5()
+{
+    int counter = 0;
+    float n = 1;
+    float number[100];
+    float sum = 0;
+    float prod = 1;
+
+    while (n != 0)
+    {
+        printf("Insert how many numbers u want and then a 0 to end the row", n);
+        scanf("%f", &n);
+
+        number[counter] = n;
+        counter++;
+    }
+
+    counter--;
+
+    for (int i = 0; i < counter; i += 2)
+    {
+        sum = sum + number[i];
+    }
+    
+    for (int i = 1; i < counter; i += 2)
+    {
+        prod = prod * number[i];
+    }
+    
+    printf("sum = %g\n", sum);
+    printf("prod = %g", prod);
+}
+
+void P6()
+{
+    int n;
+    int counter = 0;
+
+    printf("Insert how long you want the row to be");
+    scanf("%i", &n);
+
+    while (n > 0)
+    {
+        n = n - 2 - counter;
+        counter++;
+    }
+
+    for (int i = 1; i < counter + 1; i++)
+    {
+        for (int j = 0; j < i; j++)
+        {
+            printf("1 ");
+        }
+        printf("-1 ");
+    }
+}
+
+void P7()
+{
+    int n;
+
+    printf("Insert how long you want the row to be");
+    scanf("%i", &n);
+
+    if (n % 2 == 0)
+    {
+        n = n / 2 + 1;
+        
+        for (int i = 1; i < n; i++)
+        {
+            printf("%i ", i);
+            printf("%i ", i + 2);
+        }
+    }
+    else
+    {
+        n = n / 2 + 1;
+
+        int i = 1;
+
+        for (; i < n; i++)
+        {
+            printf("%i ", i);
+            printf("%i ", i + 2);
+        }
+
+        printf("%i ", i);
+    }
+}
+
+void P8()
+{
+    int n;
+    int counter = 0;
+    int number;
+
+    printf("Insert a number");
+    scanf("%i", &n);
+    number = n;
+
+    while (number != 0)
+    {
+        number /= 10;
+        counter++;
+    }
+
+    int arr[counter];
+
+    counter = 0;
+    number = n;
+
+    while (number != 0)
+    {
+        arr[counter] = number % 10;
+        number /= 10;
+        counter++;
+    }
+
+    for (int i = counter - 1; i >= 0; i--)
+    {
+        printf("%i ", arr[i]);
+    }
+}
+
+void P9()
+{
+    int n;
+    int checker = 0;
+
+    printf("Insert a number");
+    scanf("%i", &n);
+
+    for (int i = 2; i < n; i++)
+    {
+        if (n % i == 0)
+        {
+            checker++;
+        }
+    }
+
+    if (checker == 0)
+    {
+        printf("Prime");
+    }
+    else
+    {
+        printf("Not prime");
+    }
+}
+
+int P10()
+{
+    int a;
+    int b;
+
+    printf("Insert a and b");
+    scanf("%i%i", &a, &b);
+
+    int aarr[a];
+    int barr[b];
+
+    for (int i = a; i > 0; i--)
+    {
+        if (a % i == 0)
+        {
+            aarr[i] = i;
+        }
+        else
+        {
+            aarr[i] = 0;
+        }
+    }
+    for (int i = b; i > 0; i--)
+    {
+        if (b % i == 0)
+        {
+            barr[i] = i;
+        }
+        else
+        {
+            barr[i] = 0;
+        }
+    }
+
+    for (int i = a; i > 0; i--)
+    {
+        for (int j = b; j > 0; j--)
+        {
+            if (aarr[i] == barr[j] && aarr[i] != 0)
+            {
+                printf("%i ", aarr[i]);
+                return 0;
+            }
+        }
+    }
+}
+
+void P11()
+{
+    float l;
+    float L;
+    float P;
+    float A;
+
+    printf("Insert l and L of the rectangle\n");
+    scanf("%f%f", &l, &L);
+
+    if (l > 0 && L > 0)
+    {
+        P = 2 * l + 2 * L;
+        A = l * L;
+
+        printf("P = %g\nA = %g", P, A);
+    }
+    else
+    {
+        printf("Insert valid sides");
+    }
+}
+
+void P12()
+{
+    int n;
+    int sum = 0;
+
+    printf("Insert a number");
+    scanf("%i", &n);
+
+    int arr[n];
+
+    for (int i = 0; i < n; i++)
+    {
+        if (n % i == 0)
+        {
+            arr[i] = i;
+        }
+        else
+        {
+            arr[i] = 0;
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        sum = sum + arr[i];
+    }
+
+    if (n == sum)
+    {
+        printf("Perfect number");
+    }
+    else
+    {
+        printf("Not a perfect number");
+    }
+}
+
+int main()
+{
+    int menu;
+
+    printf("Select from Menu\n");
+    printf("1. Problem 1\n");
+    printf("2. Problem 2\n");
+    printf("3. Problem 3\n");
+    printf("4. Problem 4\n");
+    printf("5. Problem 5\n");
+    printf("6. Problem 6\n");
+    printf("7. Problem 7\n");
+    printf("8. Problem 8\n");
+    printf("9. Problem 9\n");
+    printf("10. Problem 10\n");
+    printf("11. Problem 11\n");
+    printf("12. Problem 12\n");
+
+    scanf("%i", &menu);
+
+    switch (menu)
+    {
+        case 1: P1();
+        break;
+        case 2: P2();
+        break;
+        case 3: P3();
+        break;
+        case 4: P4();
+        break;
+        case 5: P5();
+        break;
+        case 6: P6();
+        break;
+        case 7: P7();
+        break;
+        case 8: P8();
+        break;
+        case 9: P9();
+        break;
+        case 10: P10();
+        break;
+        case 11: P11();
+        break;
+        case 12: P12();
+        break;
+    }
+
+    return 0;
+}
