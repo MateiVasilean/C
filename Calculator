@@ -1,0 +1,176 @@
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+  int exit;
+  int history = 0;
+
+  FILE * fp;
+  fp = fopen("operations.txt", "w+");
+
+  do
+  {
+    int count;
+    int menu;
+    int size;
+    float result = 0;
+
+    printf("\nIntroduceti cifra corespunzatoare operatiei care doriti sa o efectuati\n");
+    printf("1. Adunarea termenilor\n");
+    printf("2. Scaderea termenilor\n");
+    printf("3. Inmultirea termenilor\n");
+    printf("4. Impartire la un termen\n");
+    printf("5. Un termen la putere\n");
+    printf("6. Radicalul termenilor\n");
+    printf("7. Media aritmetica a termenilor\n");
+    printf("8. Ultimele operatii\n");
+    scanf("%i", & menu);
+
+    if (menu == 8)
+    {
+      size = ftell(fp);
+      if (size == 0)
+      {
+        printf("\nNu ati efectuat nici o operatie\n");
+      }
+      else
+      {
+        char arr[history][size];
+        rewind(fp);
+        for (int i = 0; i < history; i++)
+        {
+          fscanf(fp, "%s", & arr[i]);
+          printf("\n%s\n", arr[i]);
+        }
+      }
+    }
+    else
+    {
+      if (menu == 5)
+      {
+        float number, power;
+        printf("\nIntroduceti termenul pe care doriti sa-l ridicati la o putere\n");
+        scanf("%g", & number);
+        printf("\nIntroduceti puterea la care doriti sa ridicati termenul\n");
+        scanf("%g", & power);
+        result = pow(number, power);
+        fprintf(fp, "%g^%g", number, power);
+        fprintf(fp, "=%g\n", result);
+        printf("\nRezultatul este %g\n", result);
+        history++;
+      }
+      else
+      {
+        printf("\nIntroduceti nr. de cifre cu cate doriti sa efectuati operatiile:\n");
+        scanf("%i", & count);
+
+        float arr[count];
+
+        printf("\nIntroduceti numerele cu care doriti sa efectuati operatiile\n");
+        for (int i = 0; i < count; i++)
+        {
+          scanf("%g", & arr[i]);
+        }
+
+        switch (menu) 
+        {
+        case 1:
+          for (int i = 0; i < count; i++)
+          {
+            result = result + arr[i];
+          }
+          fprintf(fp, "%g", arr[0]);
+          for (int i = 1; i < count; i++)
+          {
+            fprintf(fp, "+%g", arr[i]);
+          }
+          fprintf(fp, "=%g\n", result);
+          break;
+
+        case 2:
+          result = arr[0];
+          for (int i = 1; i < count; i++)
+          {
+            result = result - arr[i];
+          }
+          fprintf(fp, "%g", arr[0]);
+          for (int i = 1; i < count; i++)
+          {
+            fprintf(fp, "-%g", arr[i]);
+          }
+          fprintf(fp, "=%g\n", result);
+          break;
+
+        case 3:
+          result = 1;
+          for (int i = 0; i < count; i++)
+          {
+            result = result * arr[i];
+          }
+          fprintf(fp, "%g", arr[0]);
+          for (int i = 1; i < count; i++)
+          {
+            fprintf(fp, "*%g", arr[i]);
+          }
+          fprintf(fp, "=%g\n", result);
+          break;
+
+        case 4:
+          for (int i = 0; i < count; i++)
+          {
+            result = result + arr[i];
+          }
+          float div;
+          printf("\nIntroduceti termenul la care doriti sa efectuati impartirea\n");
+          scanf("%g", & div);
+          result = result / div;
+          fprintf(fp, "(%g", arr[0]);
+          for (int i = 1; i < count; i++)
+          {
+            fprintf(fp, "+%g", arr[i]);
+          }
+          fprintf(fp, ")/%g=%g\n", div, result);
+          break;
+
+        case 6:
+          for (int i = 0; i < count; i++)
+          {
+            result = result + arr[i];
+          }
+          result = sqrt(result);
+          fprintf(fp, "√(%g", arr[0]);
+          for (int i = 1; i < count; i++)
+          {
+            fprintf(fp, "+%g", arr[i]);
+          }
+          fprintf(fp, ")=%g\n", result);
+          break;
+
+        case 7:
+          for (int i = 0; i < count; i++)
+          {
+            result = (result + arr[i]);
+          }
+          result = result / count;
+          fprintf(fp, "(%g", arr[0]);
+          for (int i = 1; i < count; i++)
+          {
+            fprintf(fp, "+%g", arr[i]);
+          }
+          fprintf(fp, ")/%i=%g\n", count, result);
+          break;
+        }
+
+        printf("\nRezultatul este %g\n", result);
+        history++;
+      }
+    }
+
+    printf("\nDoriti sa efectuati o alta operatie ?\n");
+    printf("1. Da\n");
+    printf("2. Nu\n");
+    scanf("%i", & exit);
+  }
+  while (exit == 1);
+}
